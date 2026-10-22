@@ -1,0 +1,225 @@
+.dialogo {
+    width: 100%;
+    max-width: min(460px, calc(100% - 24px));
+    max-height: calc(100dvh - 24px);
+    padding: 0;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    opacity: 0;
+    scale: 0.94;
+    translate: 0 24px;
+    transition: opacity 0.3s, scale 0.45s var(--ease-out), translate 0.45s var(--ease-out),
+        overlay 0.45s allow-discrete, display 0.45s allow-discrete;
+}
+
+.dialogo[open] {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+}
+
+.dialogo::backdrop {
+    background: rgba(15, 15, 14, 0);
+    transition: background 0.4s, overlay 0.4s allow-discrete, display 0.4s allow-discrete;
+}
+
+.dialogo[open]::backdrop {
+    background: rgba(15, 15, 14, 0.6);
+    backdrop-filter: blur(6px);
+}
+
+@starting-style {
+    .dialogo[open] {
+        opacity: 0;
+        scale: 0.94;
+        translate: 0 24px;
+    }
+
+    .dialogo[open]::backdrop {
+        background: rgba(15, 15, 14, 0);
+    }
+}
+
+.caja {
+    position: relative;
+    padding: 26px 26px 22px;
+    background:
+        radial-gradient(360px 200px at 100% 0%, rgba(124, 58, 237, 0.14), transparent 70%),
+        #fff;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    box-shadow: 0 40px 90px -30px rgba(124, 58, 237, 0.5);
+}
+
+.cerrar {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    color: var(--ink);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    background: #f3f3ee;
+    border: 0;
+    border-radius: 50%;
+}
+
+.cerrar:hover {
+    background: var(--violet-claro);
+}
+
+/* Pestañas: Iniciar sesión | Suscribirse */
+.pestanas {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    background: #f3f3ee;
+    border-radius: 12px;
+}
+
+.pestanas button {
+    padding: 9px 14px;
+    color: var(--ink-mut);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    border-radius: 9px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.pestanas button[aria-selected="true"] {
+    color: var(--ink);
+    background: #fff;
+    box-shadow: 0 2px 8px -3px rgba(0, 0, 0, 0.2);
+}
+
+.titulo {
+    margin: 18px 0 6px;
+    font-family: var(--font-bebas), sans-serif;
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 0.95;
+    text-transform: uppercase;
+}
+
+.sub {
+    margin: 0 0 18px;
+    color: var(--ink-mut);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.formulario {
+    display: grid;
+    gap: 12px;
+}
+
+.campo {
+    display: grid;
+    gap: 5px;
+}
+
+.campo label {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.campo input,
+.campo select {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    color: var(--ink);
+    font: inherit;
+    font-size: 15px;
+    background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.3s;
+}
+
+.campo input:focus,
+.campo select:focus {
+    border-color: var(--violet);
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.18);
+}
+
+.campo [aria-invalid="true"] {
+    border-color: #e5484d;
+}
+
+.error {
+    color: #d1343a;
+    font-size: 12px;
+}
+
+.acepto {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    color: var(--ink-mut);
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.acepto input {
+    flex-shrink: 0;
+    width: 17px;
+    height: 17px;
+    margin-top: 1px;
+    accent-color: var(--violet);
+}
+
+.enviar {
+    margin-top: 6px;
+    height: 52px;
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: var(--violet);
+    border: 0;
+    border-radius: 12px;
+}
+
+.enviar:hover {
+    box-shadow: 0 12px 26px -10px rgba(124, 58, 237, 0.8);
+}
+
+.listo {
+    margin: 0;
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    background: var(--violet-claro);
+    border-radius: 12px;
+}
+
+.cambiar {
+    margin: 16px 0 0;
+    color: var(--ink-mut);
+    font-size: 13px;
+    text-align: center;
+}
+
+.cambiar button {
+    padding: 0;
+    color: var(--violet-dark);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}

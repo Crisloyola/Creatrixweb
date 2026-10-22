@@ -1,9 +1,9 @@
 .seccion {
     position: relative;
-    padding: 90px 0;
+    padding: 100px 0 90px;
 }
 
-/* Resplandor violeta detrás del texto */
+/* Brillo púrpura detrás del texto */
 .seccion::before {
     content: "";
     position: absolute;
@@ -14,55 +14,46 @@
     max-width: 900px;
     max-height: 560px;
     transform: translateX(-50%);
-    background: radial-gradient(closest-side, rgba(138, 63, 252, 0.28), transparent);
+    background: radial-gradient(closest-side, rgba(124, 58, 237, 0.14), transparent);
     pointer-events: none;
 }
 
 .contenedor {
     position: relative;
-    max-width: 1200px;
+    max-width: 1180px;
     margin: 0 auto;
     padding: 0 22px;
 }
 
-.etiqueta {
-    display: inline-block;
-    color: var(--mint);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+.grande {
+    margin: 22px 0 0;
+    font-family: var(--font-bebas), var(--font-bricolage), sans-serif;
+    font-size: clamp(48px, 8vw, 120px);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: 0.005em;
     text-transform: uppercase;
 }
 
-.grande {
-    margin: 18px 0 0;
-    font-family: var(--font-bricolage), sans-serif;
-    font-size: clamp(34px, 6.4vw, 92px);
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -0.035em;
-}
-
 .segunda {
-    margin-top: 50px;
+    margin-top: 34px;
 }
 
-.menta {
-    color: var(--mint);
-}
-
-/* "piezas" con un subrayado que se dibuja después de aparecer */
-.grande .menta {
-    background: linear-gradient(var(--mint), var(--mint)) 0 92% / 0% 0.08em no-repeat;
+/* "piezas": franja púrpura que se dibuja después de aparecer */
+.acento {
+    padding: 0 0.04em;
+    background: linear-gradient(rgba(124, 58, 237, 0.4), rgba(124, 58, 237, 0.4)) 0 100% / 0% 45% no-repeat;
     transition: background-size 0.9s var(--ease-out) 0.7s;
 }
 
-.grande[data-visto] .menta {
-    background-size: 100% 0.08em;
+.grande[data-visto] .acento {
+    background-size: 100% 45%;
 }
 
+/* Solo el borde de las letras */
 .contorno {
-    color: #b98cff;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--ink);
 }
 
 .cifras {
@@ -75,38 +66,40 @@
 .tarjeta {
     height: 100%;
     padding: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 26px;
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-    backdrop-filter: blur(12px);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        0 24px 44px -26px rgba(0, 0, 0, 0.7);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.35);
     transition: transform 0.45s var(--ease-out), border-color 0.3s, box-shadow 0.45s;
-    --spot: rgba(29, 233, 182, 0.16);
 }
 
 .tarjeta:hover {
     transform: translateY(-8px);
-    border-color: rgba(138, 63, 252, 0.85);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.14),
-        0 30px 60px -26px rgba(138, 63, 252, 0.6);
+    border-color: var(--ink);
+    box-shadow: 0 30px 50px -26px rgba(124, 58, 237, 0.45);
 }
 
 .tarjeta b {
     display: block;
-    margin-bottom: 8px;
-    color: var(--mint);
-    font-family: var(--font-bricolage), sans-serif;
-    font-size: clamp(54px, 7vw, 88px);
-    line-height: 1;
-    letter-spacing: -0.04em;
+    margin-bottom: 10px;
+    padding-bottom: 14px;
+    color: var(--ink);
+    font-family: var(--font-bebas), sans-serif;
+    font-size: clamp(64px, 8vw, 96px);
+    font-weight: 400;
+    line-height: 0.9;
     font-variant-numeric: tabular-nums;
+    border-bottom: 3px solid var(--violet);
 }
 
 .tarjeta span {
-    color: var(--mut);
+    color: var(--ink-mut);
     font-size: 14px;
     line-height: 1.5;
+}
+
+@media (max-width: 520px) {
+    .contorno {
+        -webkit-text-stroke-width: 1.5px;
+    }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 import { productos } from "@/data/productos";
 import { limpiar, tono, whatsappLink } from "@/data/utils";
@@ -28,35 +28,17 @@ function aItem(id: string): ItemDetalle | null {
 export default function Productos() {
     const [busqueda, setBusqueda] = useState("");
     const [abierto, setAbierto] = useState<ItemDetalle | null>(null);
-
     const visibles = useMemo(() => {
         const q = limpiar(busqueda.trim());
         return productos.filter((p) => limpiar(p.nombre).includes(q));
     }, [busqueda]);
 
-    // Permite abrir un producto desde otro lugar con #producto-<id>
-    useEffect(() => {
-        const desdeHash = () => {
-            const m = window.location.hash.match(/^#producto-(.+)$/);
-            if (m) setAbierto(aItem(m[1]));
-        };
-        desdeHash(); // por si la página se abrió ya con #producto-<id>
-        window.addEventListener("hashchange", desdeHash);
-        return () => window.removeEventListener("hashchange", desdeHash);
-    }, []);
-
-    function alCerrar() {
-        setAbierto(null);
-        if (window.location.hash.startsWith("#producto-")) {
-            history.replaceState(null, "", window.location.pathname + window.location.search);
-        }
-    }
-
     return (
         <section id="productos" className={styles.seccion}>
             <div className={styles.contenedor}>
-                <h2 className={styles.titulo} data-anim="desenfoque">
-                    Encuentra tu producto
+                <span className="chip" data-anim>Catálogo</span>
+                <h2 className={`titular ${styles.titulo}`} data-anim="desenfoque">
+                    Encuentra tu <mark>producto</mark>
                 </h2>
                 <p className={styles.sub} data-anim style={{ "--i": 1 } as CSSProperties}>
                     Busca o toca uno de los más pedidos: verás medidas, materiales y
@@ -117,7 +99,7 @@ export default function Productos() {
                 </div>
             </div>
 
-            <Detalle item={abierto} onCerrar={alCerrar} />
+            <Detalle item={abierto} onCerrar={() => setAbierto(null)} />
         </section>
     );
 }

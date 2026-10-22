@@ -9,7 +9,7 @@ type Trozo = [texto: string, clase?: string];
 
 const frase1: Trozo[] = [
     ["Creadores de"],
-    ["piezas", styles.menta],
+    ["piezas", styles.acento],
     ["que"],
     ["se ven", styles.contorno],
     ["y se sienten."],
@@ -43,7 +43,7 @@ export default function Manifiesto() {
     return (
         <section id="manifiesto" className={styles.seccion}>
             <div className={styles.contenedor}>
-                <span className={styles.etiqueta} data-anim="izquierda">
+                <span className="chip" data-anim="izquierda">
                     Una agencia con oficio
                 </span>
 

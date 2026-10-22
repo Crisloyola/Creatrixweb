@@ -1,12 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Inter, Newsreader } from "next/font/google";
+import { Bebas_Neue, Bricolage_Grotesque, Inter, Newsreader } from "next/font/google";
 import Animaciones from "@/components/Animaciones";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Acceso from "@/components/Acceso";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   weight: ["400", "700", "800"],
   variable: "--font-bricolage",
+});
+
+// Letra alta y condensada para los titulares grandes
+const bebas = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-bebas",
 });
 
 const inter = Inter({
@@ -28,7 +38,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a09",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -39,12 +49,16 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${bricolage.variable} ${inter.variable} ${newsreader.variable}`}
+      className={`${bricolage.variable} ${bebas.variable} ${inter.variable} ${newsreader.variable}`}
     >
       <body>
         {/* Barra fina arriba que se llena al hacer scroll (solo CSS) */}
         <div className="progreso-scroll" aria-hidden="true" />
+        <Navbar />
         {children}
+        <Footer />
+        {/* Ventana de Iniciar sesión / Suscribirse, disponible en todas las páginas */}
+        <Acceso />
         <Animaciones />
       </body>
     </html>

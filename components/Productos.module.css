@@ -9,10 +9,7 @@
 }
 
 .titulo {
-    margin: 0;
-    font-size: clamp(32px, 4.6vw, 48px);
-    font-weight: 800;
-    letter-spacing: -0.03em;
+    margin-top: 18px;
 }
 
 .sub {
@@ -51,7 +48,7 @@
 
 .buscador input:focus {
     border-color: var(--violet);
-    box-shadow: 0 0 0 4px rgba(138, 63, 252, 0.35);
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.25);
 }
 
 .grilla {
@@ -67,12 +64,13 @@
     padding: 0;
     overflow: hidden;
     color: inherit;
+    text-decoration: none;
     text-align: left;
     cursor: pointer;
     background: color-mix(in srgb, var(--card) 84%, transparent);
     backdrop-filter: blur(10px);
     border: 1px solid var(--line);
-    border-radius: 18px;
+    border-radius: 16px;
     transition: transform 0.45s var(--ease-out), box-shadow 0.45s, border-color 0.3s;
 }
 
@@ -80,7 +78,7 @@
 .tarjeta:focus-visible {
     transform: translateY(-8px);
     border-color: var(--violet);
-    box-shadow: 0 26px 46px -18px rgba(91, 33, 214, 0.45);
+    box-shadow: 0 26px 46px -18px rgba(124, 58, 237, 0.4);
     outline: none;
 }
 

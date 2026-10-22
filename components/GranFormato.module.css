@@ -16,11 +16,8 @@
     margin-bottom: 26px;
 }
 
-.cabecera h2 {
-    margin: 0;
-    font-size: clamp(30px, 4.2vw, 44px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+.titulo {
+    margin-top: 16px;
 }
 
 .cabecera p {
@@ -39,7 +36,7 @@
     cursor: pointer;
     background: none;
     border: 0;
-    border-bottom: 2px solid var(--mint);
+    border-bottom: 2px solid var(--violet);
 }
 
 .enlace:hover {
@@ -69,7 +66,9 @@
     justify-content: center;
     min-height: 280px;
     color: #fff;
-    background: radial-gradient(circle at 30% 30%, #c58bff, #6a28e8 55%, #1a0638);
+    background:
+        radial-gradient(circle at 30% 25%, rgba(124, 58, 237, 0.75), transparent 62%),
+        var(--k);
 }
 
 /* Halo de luz que gira detrás del número */
@@ -77,7 +76,7 @@
     position: absolute;
     inset: -40%;
     z-index: -1;
-    background: conic-gradient(from 0deg, transparent, rgba(29, 233, 182, 0.55), transparent 30%,
+    background: conic-gradient(from 0deg, transparent, rgba(183, 148, 255, 0.55), transparent 30%,
             rgba(255, 255, 255, 0.35), transparent 60%);
     filter: blur(30px);
     animation: girar 9s linear infinite;
@@ -101,12 +100,12 @@
 }
 
 .panel b {
+    font-family: var(--font-bebas), sans-serif;
     font-variant-numeric: tabular-nums;
     text-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
-    font-size: clamp(80px, 12vw, 140px);
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -0.04em;
+    font-size: clamp(96px, 14vw, 170px);
+    font-weight: 400;
+    line-height: 0.9;
 }
 
 .panel span {
@@ -128,9 +127,11 @@
 
 .destacadoTexto h3 {
     margin: 14px 0 10px;
-    font-size: clamp(26px, 3.4vw, 36px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-family: var(--font-bebas), sans-serif;
+    font-size: clamp(36px, 4.4vw, 52px);
+    font-weight: 400;
+    line-height: 0.95;
+    text-transform: uppercase;
 }
 
 .destacadoTexto p {
@@ -142,8 +143,8 @@
 }
 
 .boton {
-    padding: 14px 22px;
-    color: var(--s1);
+    padding: 16px 24px;
+    color: #c4a6ff;
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 0.04em;
@@ -151,12 +152,12 @@
     cursor: pointer;
     background: var(--ink);
     border: 0;
-    border-radius: 9px;
+    border-radius: 12px;
 }
 
 .boton:hover {
     transform: translateY(-2px);
-    box-shadow: 0 14px 28px -12px rgba(91, 33, 214, 0.7);
+    box-shadow: 0 14px 28px -12px rgba(124, 58, 237, 0.6);
 }
 
 /* Grilla de 8 tarjetas */
@@ -185,7 +186,7 @@
 .tarjeta:focus-visible {
     transform: translateY(-8px);
     border-color: var(--violet);
-    box-shadow: 0 26px 46px -18px rgba(91, 33, 214, 0.45);
+    box-shadow: 0 26px 46px -18px rgba(124, 58, 237, 0.4);
     outline: none;
 }
 

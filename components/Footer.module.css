@@ -6,15 +6,16 @@
     max-width: 1180px;
     margin: 0 auto;
     padding: 36px 22px calc(36px + env(safe-area-inset-bottom, 0px));
-    color: var(--mut);
+    color: var(--ink-mut);
     font-size: 13px;
 }
 
 .pie a {
-    color: var(--mut);
+    color: var(--ink);
+    font-weight: 600;
     text-decoration: none;
 }
 
 .pie a:hover {
-    color: #fff;
+    color: var(--violet);
 }

@@ -39,7 +39,10 @@ export default function GranFormato() {
             <div className={styles.contenedor}>
                 <div className={styles.cabecera} data-anim>
                     <div>
-                        <h2>Gigantografías y Gran Formato</h2>
+                        <span className="chip">Gran formato</span>
+                        <h2 className={`titular ${styles.titulo}`}>
+                            Gigantografías y <mark>gran formato</mark>
+                        </h2>
                         <p>
                             2400 DPI reales — vinil adhesivo, banner front, señalética y
                             displays publicitarios

@@ -4,12 +4,8 @@ export const site = {
     whatsapp: "51934575450",
     email: "ventas@creatrix.pe",
     ciudad: "Lima, Lurín, Perú",
+    // Dirección de la aplicación interna (después del login). Vacío = aún no conectada.
+    appUrl: "",
 }
-
-export const menu = [
-    { texto: "Manifiesto", href: "#manifiesto" },
-    { texto: "Productos", href: "#productos" },
-    { texto: "Gran formato", href: "#gran-formato" },
-];
 
 export const cintaTexto = "Envíos a todo el Perú. Gigantografías, stickers, volantes y más.";

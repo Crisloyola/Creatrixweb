@@ -1,0 +1,429 @@
+/* Estilos compartidos por Planes, Promociones y Beneficios */
+.seccion {
+    padding: 90px 0;
+}
+
+.contenedor {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 22px;
+}
+
+.cabecera {
+    max-width: 640px;
+    margin-bottom: 40px;
+}
+
+.cabecera h2 {
+    margin-top: 16px;
+}
+
+.cabecera p {
+    margin: 14px 0 0;
+    color: var(--ink-mut);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ───── Planes ───── */
+.planes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+    gap: 18px;
+}
+
+.plan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 26px 26px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: 0 18px 40px -30px rgba(0, 0, 0, 0.35);
+    transition: transform 0.45s var(--ease-out), box-shadow 0.45s, border-color 0.3s;
+}
+
+.plan:hover {
+    transform: translateY(-6px);
+    border-color: var(--ink);
+}
+
+/* El plan recomendado va en negro con brillo púrpura */
+.planDestacado {
+    color: #fff;
+    background:
+        radial-gradient(360px 240px at 100% 0%, rgba(124, 58, 237, 0.55), transparent 70%),
+        var(--k);
+    border-color: var(--k);
+    box-shadow: 0 30px 60px -28px rgba(124, 58, 237, 0.7);
+}
+
+.planDestacado:hover {
+    border-color: var(--violet);
+}
+
+.recomendado {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    padding: 5px 11px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--violet);
+    border-radius: 999px;
+}
+
+.plan h3 {
+    margin: 0;
+    font-family: var(--font-bebas), sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.resumen {
+    min-height: 44px;
+    margin: 8px 0 18px;
+    color: var(--ink-mut);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.planDestacado .resumen {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.monto {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+}
+
+.planDestacado .monto {
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+.monto b {
+    font-family: var(--font-bebas), sans-serif;
+    font-size: 58px;
+    font-weight: 400;
+    line-height: 0.9;
+}
+
+.monto span {
+    color: var(--ink-mut);
+    font-size: 13px;
+}
+
+.planDestacado .monto span {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.plan ul {
+    display: grid;
+    gap: 10px;
+    flex: 1;
+    margin: 18px 0 24px;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.plan li {
+    display: flex;
+    gap: 10px;
+}
+
+.plan li::before {
+    content: "✓";
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: var(--violet-dark);
+    font-size: 11px;
+    font-weight: 900;
+    background: var(--violet-claro);
+    border-radius: 6px;
+}
+
+.planDestacado li::before {
+    color: #fff;
+    background: var(--violet);
+}
+
+.botonPlan {
+    padding: 15px;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    border: 1.5px solid var(--ink);
+    border-radius: 12px;
+    transition: background 0.25s, color 0.25s;
+}
+
+.botonPlan:hover {
+    color: #fff;
+    background: var(--ink);
+}
+
+.planDestacado .botonPlan {
+    color: #fff;
+    background: var(--violet);
+    border-color: var(--violet);
+}
+
+.planDestacado .botonPlan:hover {
+    background: var(--violet-dark);
+}
+
+/* ───── Promociones ───── */
+.promos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.promo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 26px;
+    background: var(--card);
+    border: 1.5px dashed #cfcfc6;
+    border-radius: 20px;
+    transition: transform 0.45s var(--ease-out), border-color 0.3s;
+}
+
+.promo:hover {
+    transform: translateY(-6px);
+    border-color: var(--violet);
+}
+
+/* Círculo púrpura que asoma en la esquina */
+.promo::after {
+    content: "";
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: var(--violet-claro);
+    z-index: 0;
+}
+
+.promo>* {
+    position: relative;
+    z-index: 1;
+}
+
+.estado {
+    align-self: flex-start;
+    padding: 5px 11px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--ink);
+    border-radius: 999px;
+}
+
+.valor {
+    margin: 18px 0 4px;
+    color: var(--violet);
+    font-family: var(--font-bebas), sans-serif;
+    font-size: 84px;
+    font-weight: 400;
+    line-height: 0.85;
+}
+
+.promo h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.promo p {
+    flex: 1;
+    margin: 0 0 18px;
+    color: var(--ink-mut);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.promo a {
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.promo a:hover {
+    color: var(--violet);
+}
+
+/* ───── Beneficios (bloque negro) ───── */
+.bloqueOscuro {
+    padding: 70px clamp(22px, 5vw, 60px);
+    color: #fff;
+    background:
+        radial-gradient(600px 380px at 100% 0%, rgba(124, 58, 237, 0.5), transparent 65%),
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 34px 34px,
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 34px 34px,
+        var(--k);
+    border-radius: 28px;
+}
+
+.bloqueOscuro .cabecera p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.bloqueOscuro :global(.chip) {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+}
+
+.bloqueOscuro :global(.titular) mark {
+    background: linear-gradient(transparent 55%, rgba(124, 58, 237, 0.7) 55%);
+}
+
+.beneficios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.beneficio {
+    padding: 26px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    transition: transform 0.45s var(--ease-out), border-color 0.3s;
+    --spot: rgba(124, 58, 237, 0.3);
+}
+
+.beneficio:hover {
+    transform: translateY(-6px);
+    border-color: rgba(183, 148, 255, 0.6);
+}
+
+.icono {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    color: #fff;
+    font-family: var(--font-bebas), sans-serif;
+    font-size: 24px;
+    background: var(--violet);
+    border-radius: 14px;
+    box-shadow: 0 10px 24px -8px rgba(124, 58, 237, 0.9);
+}
+
+.beneficio h3 {
+    margin: 18px 0 8px;
+    font-family: var(--font-bebas), sans-serif;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.beneficio p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.pasos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 40px 0 34px;
+    padding: 26px 0 0;
+    list-style: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.pasos li {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 14px;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.pasos b {
+    color: #b794ff;
+    font-family: var(--font-bebas), sans-serif;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.botonClub {
+    display: inline-block;
+    padding: 17px 26px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: var(--violet);
+    border-radius: 12px;
+}
+
+.botonClub:hover {
+    box-shadow: 0 14px 30px -10px rgba(124, 58, 237, 0.9);
+}
+
+@media (max-width: 900px) {
+
+    .planes,
+    .promos,
+    .beneficios {
+        grid-template-columns: 1fr;
+    }
+
+    .pasos {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .seccion {
+        padding: 60px 0;
+    }
+
+    .contenedor.bloqueOscuro {
+        margin: 0 12px;
+        padding: 46px 20px;
+        border-radius: 22px;
+    }
+
+    .botonClub {
+        display: block;
+        text-align: center;
+    }
+}

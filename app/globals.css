@@ -1,24 +1,22 @@
 :root {
-  /* Marca Creatrix */
-  --k: #0a0a09;
-  /* negro de fondo */
-  --w: #f3f1ea;
-  /* blanco cálido para textos */
-  --violet: #8a3ffc;
-  /* violeta neón */
-  --violet-dark: #5b21d6;
-  --mint: #1de9b6;
-  /* verde menta de la flecha del logo */
-  --mut: #9a9b92;
-  /* texto secundario */
+  /* Marca Creatrix: negro, blanco y púrpura */
+  --k: #0f0f0e;
+  /* negro de textos y bloques oscuros */
+  --w: #ffffff;
+  --violet: #7c3aed;
+  /* púrpura de acento */
+  --violet-dark: #5b21b6;
+  --violet-claro: #ede5ff;
+  --mut: #8b8c84;
+  /* texto secundario sobre negro */
 
-  /* Zona clara (productos y gran formato) */
-  --s1: #fafaf8;
+  /* Superficies claras */
+  --s1: #f1f1ec;
   --card: #ffffff;
-  --line: #e5e3da;
-  --ink: #111111;
-  --ink-mut: #666666;
-  --price: #5b21d6;
+  --line: #e0e0d8;
+  --ink: #0f0f0e;
+  --ink-mut: #5d5e57;
+  --price: #5b21b6;
 
   /* Curvas de animación */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -27,24 +25,13 @@
   /* con un pequeño rebote */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --s1: #121311;
-    --card: #1b1c19;
-    --line: #2d2e29;
-    --ink: #f3f1ea;
-    --ink-mut: #a6a79f;
-    --price: #1de9b6;
-  }
-}
-
 * {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 92px;
+  scroll-padding-top: 80px;
   /* para que el navbar no tape los títulos */
 }
 
@@ -52,34 +39,24 @@ body {
   margin: 0;
   overflow-x: clip;
   /* nada se sale por los costados (la cinta inclinada, los brillos) */
-  background: var(--k);
-  color: var(--w);
+  color: var(--ink);
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  /* La misma cuadrícula tenue del hero en toda la página */
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px) 0 0 / 34px 34px,
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px) 0 0 / 34px 34px,
+    var(--s1);
 }
 
 ::selection {
-  background: var(--mint);
-  color: var(--k);
+  background: var(--violet);
+  color: #fff;
 }
 
 :focus-visible {
-  outline: 2px solid var(--mint);
+  outline: 2px solid var(--violet);
   outline-offset: 3px;
-}
-
-/* Luces de fondo fijas */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(900px 600px at 8% 0%, rgba(138, 63, 252, 0.2), transparent 60%),
-    radial-gradient(800px 600px at 100% 45%, rgba(29, 233, 182, 0.08), transparent 60%),
-    radial-gradient(700px 500px at 0% 90%, rgba(192, 38, 211, 0.15), transparent 60%),
-    var(--k);
 }
 
 h1,
@@ -89,14 +66,58 @@ h4 {
   font-family: var(--font-bricolage), var(--font-inter), sans-serif;
 }
 
+/* Titular de sección: letra alta y condensada, como el hero */
+.titular {
+  margin: 0;
+  font-family: var(--font-bebas), var(--font-bricolage), sans-serif;
+  font-size: clamp(44px, 6vw, 76px);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+
+/* Palabra resaltada con una franja púrpura por detrás */
+.titular mark,
+.resaltado {
+  padding: 0 0.04em;
+  color: inherit;
+  background: linear-gradient(transparent 55%, rgba(124, 58, 237, 0.35) 55%);
+}
+
+/* Etiqueta blanca con punto púrpura (arriba de cada titular) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px -6px rgba(0, 0, 0, 0.18);
+}
+
+.chip::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--violet);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.22);
+}
+
 .serif {
   font-family: var(--font-newsreader), Georgia, serif;
 }
 
 .pill {
   display: inline-block;
-  background: var(--mint);
-  color: #0a0a09;
+  background: var(--violet);
+  color: #fff;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -111,52 +132,16 @@ h4 {
   initial-value: 270;
 }
 
+/* Bloque de productos y gran formato */
 .zona-clara {
   position: relative;
-  isolation: isolate;
-  margin: 0 12px 20px;
-  padding: 84px 0 92px;
-  overflow: hidden;
-  color: var(--ink);
-  border-radius: 36px;
-  background:
-    radial-gradient(800px 380px at 0% 0%, rgba(138, 63, 252, 0.2), transparent 60%),
-    radial-gradient(700px 420px at 100% 28%, rgba(29, 233, 182, 0.16), transparent 60%),
-    radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1.3px) 0 0 / 22px 22px,
-    var(--s1);
-}
-
-/* Textura de grano de papel */
-.zona-clara::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  opacity: 0.14;
-  mix-blend-mode: multiply;
-}
-
-@media (prefers-color-scheme: dark) {
-  .zona-clara::before {
-    opacity: 0.3;
-    mix-blend-mode: overlay;
-  }
-
-  .zona-clara {
-    background:
-      radial-gradient(800px 380px at 0% 0%, rgba(138, 63, 252, 0.22), transparent 60%),
-      radial-gradient(700px 420px at 100% 28%, rgba(29, 233, 182, 0.1), transparent 60%),
-      radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.3px) 0 0 / 22px 22px,
-      var(--s1);
-  }
+  padding: 90px 0 100px;
+  background: radial-gradient(700px 420px at 100% 30%, rgba(124, 58, 237, 0.1), transparent 65%);
 }
 
 @media (max-width: 640px) {
   .zona-clara {
     padding: 60px 0 64px;
-    border-radius: 26px;
   }
 }
 /* ───────────── Animaciones ───────────── */
@@ -170,7 +155,7 @@ h4 {
   z-index: 100;
   height: 3px;
   pointer-events: none;
-  background: linear-gradient(90deg, var(--violet), #c084fc, var(--mint));
+  background: linear-gradient(90deg, var(--violet-dark), var(--violet), #b794ff);
   transform: scaleX(0);
   transform-origin: 0 50%;
 }
@@ -319,7 +304,7 @@ h4 {
   pointer-events: none;
   opacity: 0;
   background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%),
-      var(--spot, rgba(138, 63, 252, 0.22)),
+      var(--spot, rgba(124, 58, 237, 0.12)),
       transparent 65%);
   transition: opacity 0.35s;
 }
