@@ -1,0 +1,166 @@
+.dialogo {
+    width: 100%;
+    max-width: min(760px, calc(100% - 32px));
+    padding: 0;
+    overflow: visible;
+    color: #f3f1ea;
+    background: transparent;
+    border: 0;
+    /* Cerrado: chico y transparente. allow-discrete deja animar también al cerrar */
+    opacity: 0;
+    scale: 0.92;
+    translate: 0 30px;
+    transition: opacity 0.35s, scale 0.45s var(--ease-out), translate 0.45s var(--ease-out),
+        overlay 0.45s allow-discrete, display 0.45s allow-discrete;
+}
+
+.dialogo[open] {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+}
+
+.dialogo::backdrop {
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0);
+    transition: background 0.4s, backdrop-filter 0.4s, overlay 0.4s allow-discrete,
+        display 0.4s allow-discrete;
+}
+
+.dialogo[open]::backdrop {
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(8px);
+}
+
+@starting-style {
+    .dialogo[open] {
+        opacity: 0;
+        scale: 0.92;
+        translate: 0 30px;
+    }
+
+    .dialogo[open]::backdrop {
+        background: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0);
+    }
+}
+
+.modal {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    overflow: hidden;
+    text-align: left;
+    background: #0f0f0d;
+    border: 1px solid #33332e;
+    border-radius: 30px;
+    box-shadow: 0 40px 100px -30px rgba(138, 63, 252, 0.55);
+}
+
+/* El texto entra un poco después que la ventana */
+.dialogo[open] .texto>* {
+    animation: entrar 0.6s var(--ease-out) backwards;
+}
+
+.dialogo[open] .texto>:nth-child(2) {
+    animation-delay: 0.08s;
+}
+
+.dialogo[open] .texto>:nth-child(3) {
+    animation-delay: 0.14s;
+}
+
+.dialogo[open] .texto>:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.dialogo[open] .texto>:nth-child(5) {
+    animation-delay: 0.26s;
+}
+
+@keyframes entrar {
+    from {
+        opacity: 0;
+        translate: 0 14px;
+    }
+}
+
+.imagen {
+    min-height: 260px;
+}
+
+.texto {
+    padding: 32px;
+}
+
+.texto h3 {
+    margin: 12px 0;
+    font-size: 34px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.texto p {
+    color: #cfd0c7;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.precio {
+    margin: 16px 0;
+    color: var(--mint);
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cotizar {
+    padding: 14px 24px;
+    color: #0a0a09;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    background: var(--mint);
+    border-radius: 999px;
+    transition: transform 0.3s var(--ease-spring), box-shadow 0.3s;
+}
+
+.cotizar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px -4px rgba(29, 233, 182, 0.7);
+}
+
+.cerrar {
+    padding: 14px 24px;
+    color: #f3f1ea;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    background: transparent;
+    border: 1.5px solid #55564d;
+    border-radius: 999px;
+    transition: border-color 0.25s, background 0.25s;
+}
+
+.cerrar:hover {
+    border-color: #f3f1ea;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 640px) {
+    .modal {
+        grid-template-columns: 1fr;
+    }
+
+    .imagen {
+        min-height: 140px;
+    }
+
+    .texto {
+        padding: 22px;
+    }
+}

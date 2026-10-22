@@ -1,0 +1,313 @@
+.hero {
+    position: relative;
+    overflow: hidden;
+    width: calc(100% - 32px);
+    max-width: 1200px;
+    margin: 18px auto 0;
+    padding: 52px 0 88px;
+    border-radius: 32px;
+    border: 1px solid #2c2c28;
+    background:
+        radial-gradient(1100px 520px at 88% -10%, hsl(var(--h) 90% 50% / 0.34), transparent 60%),
+        radial-gradient(900px 520px at 0% 115%, rgba(29, 233, 182, 0.18), transparent 60%),
+        linear-gradient(160deg, #10130a, #0a0a09 62%);
+    box-shadow:
+        0 50px 90px -50px hsl(var(--h) 90% 50% / 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: --h 0.9s;
+    /* Entrada al cargar la página */
+    animation: entrar 1.1s var(--ease-out) backwards;
+}
+
+@keyframes entrar {
+    from {
+        opacity: 0;
+        scale: 0.96;
+        translate: 0 24px;
+    }
+}
+
+/* Cuadrícula tenue que se desplaza lento */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 25%, transparent 75%);
+    mask-image: radial-gradient(ellipse at 50% 40%, #000 25%, transparent 75%);
+    animation: rejilla 20s linear infinite;
+}
+
+@keyframes rejilla {
+    to {
+        background-position: 56px 56px;
+    }
+}
+
+/* Luz que sigue al mouse */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(420px circle at var(--mx, 70%) var(--my, 30%),
+            rgba(255, 255, 255, 0.09),
+            transparent 60%);
+}
+
+.blob1,
+.blob2 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    animation: derivar 14s ease-in-out infinite alternate;
+}
+
+.blob1 {
+    width: 420px;
+    height: 420px;
+    top: -80px;
+    right: -60px;
+    background: hsl(var(--h) 90% 55%);
+    opacity: 0.3;
+}
+
+.blob2 {
+    width: 360px;
+    height: 360px;
+    bottom: -90px;
+    left: 8%;
+    background: var(--mint);
+    opacity: 0.25;
+    animation-duration: 18s;
+}
+
+@keyframes derivar {
+    to {
+        transform: translate(60px, -40px) scale(1.2);
+    }
+}
+
+.contenido {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    padding: 0 clamp(22px, 5vw, 56px);
+}
+
+/* Todas las diapositivas ocupan la misma celda; solo una es visible.
+   El slide solo se desvanece: sus partes entran por separado. */
+.slide {
+    grid-area: 1 / 1;
+    position: relative;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s, visibility 0.6s;
+}
+
+.activo {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Etiqueta, texto y botón: suben uno tras otro */
+.aparece {
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    translate: 0 18px;
+    transition: opacity 0.5s, translate 0.5s var(--ease-out);
+}
+
+.activo .aparece {
+    opacity: 1;
+    translate: 0 0;
+    transition-duration: 0.8s, 0.9s;
+    transition-delay: calc(120ms + var(--n) * 90ms);
+}
+
+.titulo {
+    position: relative;
+    z-index: 1;
+    margin: 14px 0 0;
+    font-family: var(--font-bricolage), sans-serif;
+    font-size: clamp(30px, 5.6vw, 78px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    text-transform: uppercase;
+}
+
+/* Cada línea es una "ventana": el texto sube desde abajo */
+.linea {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.1em;
+    margin-bottom: -0.1em;
+}
+
+.linea>span {
+    display: block;
+    translate: 0 110%;
+    rotate: 3deg;
+    transform-origin: 0 100%;
+    transition: translate 0.5s var(--ease-out), rotate 0.5s var(--ease-out);
+}
+
+.activo .linea>span {
+    translate: 0 0;
+    rotate: 0deg;
+    transition-duration: 1s;
+    transition-delay: calc(180ms + var(--n) * 100ms);
+}
+
+.linea:nth-child(1)>span {
+    background: linear-gradient(180deg, #fff, #b7b9ad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.linea:nth-child(2)>span {
+    color: #b98cff;
+    /* violeta claro, relleno sólido */
+}
+
+.linea:nth-child(3)>span {
+    color: var(--mint);
+}
+
+/* Primera carga: la slide activa también hace su entrada */
+@starting-style {
+    .activo .linea>span {
+        translate: 0 110%;
+        rotate: 3deg;
+    }
+
+    .activo .aparece {
+        opacity: 0;
+        translate: 0 18px;
+    }
+}
+
+.texto {
+    max-width: 440px;
+    margin: 16px 0 22px;
+    color: #cfd0c7;
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.boton {
+    display: inline-block;
+    background: var(--mint);
+    color: #0a0a09;
+    font-family: var(--font-bricolage), sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    padding: 13px 24px;
+    border-radius: 999px;
+    text-decoration: none;
+}
+
+.boton:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 34px -4px rgba(29, 233, 182, 0.75);
+}
+
+.controles {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 28px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 clamp(22px, 5vw, 56px);
+}
+
+.punto {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 99px;
+    background: #55564d;
+    cursor: pointer;
+    transition: width 0.5s var(--ease-out), background 0.3s;
+}
+
+.punto:hover {
+    background: #8a8b80;
+}
+
+.puntoActivo,
+.puntoActivo:hover {
+    width: 34px;
+    background: var(--mint);
+}
+
+.flecha {
+    margin-left: auto;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s, transform 0.3s var(--ease-spring);
+}
+
+.flecha:hover {
+    background: var(--mint);
+    color: #0a0a09;
+    transform: scale(1.1);
+}
+
+.flecha:active {
+    transform: scale(0.92);
+}
+
+.flecha+.flecha {
+    margin-left: 0;
+}
+
+/* Barra de tiempo: se escala (más fluido que animar el ancho) */
+.progreso {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    height: 4px;
+    background: linear-gradient(90deg, var(--violet), var(--mint));
+    box-shadow: 0 0 14px rgba(29, 233, 182, 0.6);
+    transform-origin: 0 50%;
+    animation: llenar linear forwards;
+}
+
+@keyframes llenar {
+    from {
+        transform: scaleX(0);
+    }
+}
+
+@media (max-width: 760px) {
+    .hero {
+        padding: 34px 0 76px;
+        border-radius: 24px;
+    }
+
+    .controles {
+        bottom: 20px;
+    }
+}

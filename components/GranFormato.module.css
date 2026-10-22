@@ -1,0 +1,283 @@
+.seccion {
+    margin-top: 100px;
+}
+
+.contenedor {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 22px;
+}
+
+.cabecera {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 26px;
+}
+
+.cabecera h2 {
+    margin: 0;
+    font-size: clamp(30px, 4.2vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.cabecera p {
+    margin: 6px 0 0;
+    color: var(--ink-mut);
+    font-size: 14px;
+}
+
+.enlace {
+    padding: 0 0 3px;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    border-bottom: 2px solid var(--mint);
+}
+
+.enlace:hover {
+    color: var(--violet);
+}
+
+/* Tarjeta destacada */
+.destacado {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    margin-bottom: 22px;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--card) 84%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: 0 14px 40px -18px rgba(0, 0, 0, 0.28);
+}
+
+.panel {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    color: #fff;
+    background: radial-gradient(circle at 30% 30%, #c58bff, #6a28e8 55%, #1a0638);
+}
+
+/* Halo de luz que gira detrás del número */
+.halo {
+    position: absolute;
+    inset: -40%;
+    z-index: -1;
+    background: conic-gradient(from 0deg, transparent, rgba(29, 233, 182, 0.55), transparent 30%,
+            rgba(255, 255, 255, 0.35), transparent 60%);
+    filter: blur(30px);
+    animation: girar 9s linear infinite;
+}
+
+@keyframes girar {
+    to {
+        rotate: 360deg;
+    }
+}
+
+/* Trama de puntos de imprenta */
+.panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(rgba(255, 255, 255, 0.28) 1.2px, transparent 1.5px) 0 0 / 16px 16px;
+    -webkit-mask-image: linear-gradient(to top, #000, transparent 80%);
+    mask-image: linear-gradient(to top, #000, transparent 80%);
+}
+
+.panel b {
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+    font-size: clamp(80px, 12vw, 140px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.panel span {
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.destacadoTexto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 34px 40px;
+}
+
+.destacadoTexto h3 {
+    margin: 14px 0 10px;
+    font-size: clamp(26px, 3.4vw, 36px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.destacadoTexto p {
+    max-width: 520px;
+    margin: 0 0 22px;
+    color: var(--ink-mut);
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.boton {
+    padding: 14px 22px;
+    color: var(--s1);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: var(--ink);
+    border: 0;
+    border-radius: 9px;
+}
+
+.boton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -12px rgba(91, 33, 214, 0.7);
+}
+
+/* Grilla de 8 tarjetas */
+.grilla {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.tarjeta {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 12px 20px;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    background: color-mix(in srgb, var(--card) 84%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    transition: transform 0.45s var(--ease-out), box-shadow 0.45s, border-color 0.3s;
+}
+
+.tarjeta:hover,
+.tarjeta:focus-visible {
+    transform: translateY(-8px);
+    border-color: var(--violet);
+    box-shadow: 0 26px 46px -18px rgba(91, 33, 214, 0.45);
+    outline: none;
+}
+
+.tarjeta:active {
+    transform: translateY(-3px) scale(0.98);
+}
+
+.etiqueta {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    z-index: 2;
+    padding: 5px 11px;
+    font-size: 10px;
+}
+
+.imagen {
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+}
+
+.imagen>* {
+    transition: scale 0.7s var(--ease-out);
+}
+
+.tarjeta:hover .imagen>* {
+    scale: 1.1;
+}
+
+.tarjeta h3 {
+    margin: 16px 6px 6px;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.tarjeta p {
+    flex: 1;
+    margin: 0 6px 14px;
+    color: var(--ink-mut);
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.cta {
+    display: inline-flex;
+    gap: 6px;
+    margin: 0 6px;
+    transition: color 0.25s;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.cta i {
+    font-style: normal;
+    transition: translate 0.4s var(--ease-spring);
+}
+
+.tarjeta:hover .cta {
+    color: var(--violet);
+}
+
+.tarjeta:hover .cta i {
+    translate: 6px 0;
+}
+
+@media (max-width: 1000px) {
+    .grilla {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .seccion {
+        margin-top: 70px;
+    }
+
+    .grilla {
+        grid-template-columns: 1fr;
+    }
+
+    .destacado {
+        grid-template-columns: 1fr;
+    }
+
+    .destacadoTexto {
+        padding: 24px;
+    }
+
+    .cabecera {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

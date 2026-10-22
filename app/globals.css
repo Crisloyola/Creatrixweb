@@ -1,26 +1,322 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Marca Creatrix */
+  --k: #0a0a09;
+  /* negro de fondo */
+  --w: #f3f1ea;
+  /* blanco cálido para textos */
+  --violet: #8a3ffc;
+  /* violeta neón */
+  --violet-dark: #5b21d6;
+  --mint: #1de9b6;
+  /* verde menta de la flecha del logo */
+  --mut: #9a9b92;
+  /* texto secundario */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Zona clara (productos y gran formato) */
+  --s1: #fafaf8;
+  --card: #ffffff;
+  --line: #e5e3da;
+  --ink: #111111;
+  --ink-mut: #666666;
+  --price: #5b21d6;
+
+  /* Curvas de animación */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* sale rápido y frena suave */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* con un pequeño rebote */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --s1: #121311;
+    --card: #1b1c19;
+    --line: #2d2e29;
+    --ink: #f3f1ea;
+    --ink-mut: #a6a79f;
+    --price: #1de9b6;
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 92px;
+  /* para que el navbar no tape los títulos */
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  overflow-x: clip;
+  /* nada se sale por los costados (la cinta inclinada, los brillos) */
+  background: var(--k);
+  color: var(--w);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--mint);
+  color: var(--k);
+}
+
+:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 3px;
+}
+
+/* Luces de fondo fijas */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 600px at 8% 0%, rgba(138, 63, 252, 0.2), transparent 60%),
+    radial-gradient(800px 600px at 100% 45%, rgba(29, 233, 182, 0.08), transparent 60%),
+    radial-gradient(700px 500px at 0% 90%, rgba(192, 38, 211, 0.15), transparent 60%),
+    var(--k);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-bricolage), var(--font-inter), sans-serif;
+}
+
+.serif {
+  font-family: var(--font-newsreader), Georgia, serif;
+}
+
+.pill {
+  display: inline-block;
+  background: var(--mint);
+  color: #0a0a09;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+@property --h {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 270;
+}
+
+.zona-clara {
+  margin: 0 12px 20px;
+  padding: 84px 0 92px;
+  overflow: hidden;
+  color: var(--ink);
+  border-radius: 36px;
+  background:
+    radial-gradient(800px 380px at 0% 0%, rgba(138, 63, 252, 0.2), transparent 60%),
+    radial-gradient(700px 420px at 100% 28%, rgba(29, 233, 182, 0.16), transparent 60%),
+    radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1.3px) 0 0 / 22px 22px,
+    var(--s1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .zona-clara {
+    background:
+      radial-gradient(800px 380px at 0% 0%, rgba(138, 63, 252, 0.22), transparent 60%),
+      radial-gradient(700px 420px at 100% 28%, rgba(29, 233, 182, 0.1), transparent 60%),
+      radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.3px) 0 0 / 22px 22px,
+      var(--s1);
+  }
+}
+
+@media (max-width: 640px) {
+  .zona-clara {
+    padding: 60px 0 64px;
+    border-radius: 26px;
+  }
+}
+/* ───────────── Animaciones ───────────── */
+
+/* Barra de progreso del scroll (navegadores que soportan scroll-timeline) */
+.progreso-scroll {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 3px;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--violet), #c084fc, var(--mint));
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .progreso-scroll {
+      animation: anim-scroll linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+
+@keyframes anim-scroll {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Aparecer al hacer scroll: <div data-anim="subir" style="--i: 2">
+   --i escalona los elementos de una grilla (0, 1, 2…).
+   Se usa animation + translate/scale para no chocar con los hover que usan transform. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-anim]:not([data-visto]) {
+    opacity: 0;
+  }
+
+  [data-anim][data-visto] {
+    animation: anim-subir 0.95s var(--ease-out) backwards;
+    animation-delay: calc(var(--i, 0) * 75ms);
+  }
+
+  [data-anim="escala"][data-visto] {
+    animation-name: anim-escala;
+  }
+
+  [data-anim="desenfoque"][data-visto] {
+    animation-name: anim-desenfoque;
+  }
+
+  [data-anim="izquierda"][data-visto] {
+    animation-name: anim-izquierda;
+  }
+
+  /* Titulares palabra por palabra */
+  [data-anim="palabras"]:not([data-visto]) {
+    opacity: 1;
+  }
+
+  [data-anim="palabras"]:not([data-visto]) .palabra {
+    opacity: 0;
+  }
+
+  [data-anim="palabras"][data-visto] {
+    animation: none;
+  }
+
+  [data-anim="palabras"][data-visto] .palabra {
+    animation: anim-palabra 0.9s var(--ease-out) backwards;
+    animation-delay: calc(var(--i, 0) * 55ms);
+  }
+}
+
+.palabra {
+  display: inline-block;
+}
+
+@keyframes anim-subir {
+  from {
+    opacity: 0;
+    translate: 0 44px;
+  }
+}
+
+@keyframes anim-escala {
+  from {
+    opacity: 0;
+    scale: 0.92;
+    translate: 0 30px;
+  }
+}
+
+@keyframes anim-desenfoque {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+    translate: 0 20px;
+  }
+}
+
+@keyframes anim-izquierda {
+  from {
+    opacity: 0;
+    translate: -50px 0;
+  }
+}
+
+@keyframes anim-palabra {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    translate: 0 0.45em;
+    rotate: 4deg;
+  }
+}
+
+/* Brillo que cruza el botón al pasar el mouse */
+.brillo {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.brillo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.6) 50%, transparent 70%);
+  translate: -130% 0;
+  transition: translate 0.75s var(--ease-out);
+}
+
+.brillo:hover::after {
+  translate: 130% 0;
+}
+
+/* Botón magnético: el JS mueve "translate"; aquí solo se suaviza */
+[data-iman] {
+  transition: translate 0.35s var(--ease-out), transform 0.3s var(--ease-spring),
+    background-color 0.25s, color 0.25s, box-shadow 0.3s;
+}
+
+/* Luz que sigue al mouse dentro de una tarjeta */
+[data-spot] {
+  position: relative;
+  isolation: isolate;
+}
+
+[data-spot]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%),
+      var(--spot, rgba(138, 63, 252, 0.22)),
+      transparent 65%);
+  transition: opacity 0.35s;
+}
+
+[data-spot]:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

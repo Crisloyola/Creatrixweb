@@ -1,0 +1,32 @@
+.portada {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: radial-gradient(circle at 28% 22%,
+            hsl(var(--h) 85% 72%),
+            hsl(var(--h) 70% 42%));
+}
+
+/* Trama de puntos */
+.portada::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(rgba(255, 255, 255, 0.3) 1.2px, transparent 1.4px) 0 0 / 14px 14px;
+    opacity: 0.6;
+}
+
+.portada img {
+    object-fit: cover;
+}
+
+.inicial {
+    position: relative;
+    font-size: clamp(56px, 6vw, 76px);
+    font-weight: 800;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+}

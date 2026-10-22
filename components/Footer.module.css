@@ -1,0 +1,20 @@
+.pie {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 36px 22px calc(36px + env(safe-area-inset-bottom, 0px));
+    color: var(--mut);
+    font-size: 13px;
+}
+
+.pie a {
+    color: var(--mut);
+    text-decoration: none;
+}
+
+.pie a:hover {
+    color: #fff;
+}

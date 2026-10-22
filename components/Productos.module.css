@@ -1,0 +1,186 @@
+.seccion {
+    text-align: center;
+}
+
+.contenedor {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 22px;
+}
+
+.titulo {
+    margin: 0;
+    font-size: clamp(32px, 4.6vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.sub {
+    max-width: 470px;
+    margin: 12px auto 26px;
+    color: var(--ink-mut);
+    line-height: 1.55;
+}
+
+.oculto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+}
+
+.buscador {
+    display: block;
+    max-width: 520px;
+    margin: 0 auto 38px;
+}
+
+.buscador input {
+    width: 100%;
+    height: 54px;
+    padding: 0 22px;
+    background: color-mix(in srgb, var(--card) 84%, transparent);
+    color: var(--ink);
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.4s var(--ease-out);
+}
+
+.buscador input:focus {
+    border-color: var(--violet);
+    box-shadow: 0 0 0 4px rgba(138, 63, 252, 0.35);
+}
+
+.grilla {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+    text-align: left;
+}
+
+.tarjeta {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    background: color-mix(in srgb, var(--card) 84%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    transition: transform 0.45s var(--ease-out), box-shadow 0.45s, border-color 0.3s;
+}
+
+.tarjeta:hover,
+.tarjeta:focus-visible {
+    transform: translateY(-8px);
+    border-color: var(--violet);
+    box-shadow: 0 26px 46px -18px rgba(91, 33, 214, 0.45);
+    outline: none;
+}
+
+.tarjeta:active {
+    transform: translateY(-3px) scale(0.98);
+}
+
+.imagen {
+    aspect-ratio: 16 / 10;
+}
+
+/* La imagen (o la inicial) se acerca un poco */
+.imagen>* {
+    transition: scale 0.7s var(--ease-out), rotate 0.7s var(--ease-out);
+}
+
+.tarjeta:hover .imagen>* {
+    scale: 1.12;
+    rotate: -3deg;
+}
+
+/* Reflejo que cruza la imagen */
+.imagen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.45) 50%, transparent 65%);
+    translate: -110% 0;
+    transition: translate 0.9s var(--ease-out);
+}
+
+.tarjeta:hover .imagen::after {
+    translate: 110% 0;
+}
+
+.cuerpo {
+    position: relative;
+}
+
+.cuerpo {
+    padding: 14px 15px 18px;
+}
+
+.cuerpo strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.precio {
+    display: inline-block;
+    margin-top: 5px;
+    color: var(--price);
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.vacio {
+    padding: 30px 0;
+    color: var(--ink-mut);
+}
+
+.ayuda {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 32px;
+    color: var(--ink-mut);
+    font-size: 14px;
+}
+
+.asistente {
+    padding: 11px 20px;
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: none;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    transition: background 0.25s, color 0.25s, transform 0.3s var(--ease-spring);
+}
+
+.asistente:hover {
+    transform: scale(1.05);
+    background: var(--ink);
+    color: var(--s1);
+}
+
+@media (max-width: 1000px) {
+    .grilla {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .grilla {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
