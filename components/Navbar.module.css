@@ -80,7 +80,6 @@
     margin-left: auto;
 }
 
-.login,
 .cta {
     padding: 11px 18px;
     font-size: 14px;
@@ -88,17 +87,6 @@
     text-decoration: none;
     white-space: nowrap;
     border-radius: 10px;
-}
-
-.login {
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    transition: border-color 0.2s, color 0.2s;
-}
-
-.login:hover {
-    color: #c4a6ff;
-    border-color: #c4a6ff;
 }
 
 .cta {
@@ -109,10 +97,6 @@
 .cta:hover {
     transform: scale(1.04);
     box-shadow: 0 10px 24px -8px rgba(124, 58, 237, 0.8);
-}
-
-.soloMovil {
-    display: none !important;
 }
 
 /* Botón hamburguesa: dos líneas que se cruzan en una X */
@@ -163,10 +147,6 @@
         padding: 0 12px 0 16px;
     }
 
-    .login {
-        display: none;
-    }
-
     .cta {
         padding: 10px 14px;
         font-size: 13px;
@@ -174,10 +154,6 @@
 
     .burger {
         display: grid;
-    }
-
-    .soloMovil {
-        display: inline-flex !important;
     }
 
     /* El menú se vuelve un panel que baja */

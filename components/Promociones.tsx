@@ -26,7 +26,7 @@ export default function Promociones() {
                             <b className={styles.valor}>{p.valor}</b>
                             <h3>{p.titulo}</h3>
                             <p>{p.texto}</p>
-                            <a href="#registro">Avisarme →</a>
+                            <a href="#suscribirse">Avisarme →</a>
                         </article>
                     ))}
                 </div>

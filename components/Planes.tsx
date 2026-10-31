@@ -34,8 +34,8 @@ export default function Planes() {
                                     <li key={b}>{b}</li>
                                 ))}
                             </ul>
-                            <a className={`${styles.botonPlan} brillo`} href={`#registro-${p.id}`}>
-                                Inscribirme
+                            <a className={`${styles.botonPlan} brillo`} href={`#suscribirse-${p.id}`}>
+                                Suscribirme
                             </a>
                         </article>
                     ))}

@@ -39,7 +39,6 @@
     background: #fff;
     border-radius: 999px;
     box-shadow: 0 4px 14px -6px rgba(0, 0, 0, 0.18);
-    animation: subir 0.8s var(--ease-out) backwards;
 }
 
 .chip i {
@@ -62,21 +61,6 @@
     text-transform: uppercase;
 }
 
-.titulo>span {
-    animation: subir 0.9s var(--ease-out) backwards;
-}
-
-.titulo>span:nth-child(2) {
-    animation-delay: 0.08s;
-}
-
-.titulo>span:nth-child(3) {
-    animation-delay: 0.16s;
-}
-
-.titulo>span:nth-child(4) {
-    animation-delay: 0.24s;
-}
 
 /* Línea solo con el borde de las letras */
 .contorno {
@@ -104,7 +88,6 @@
     color: var(--suave);
     font-size: 15px;
     line-height: 1.6;
-    animation: subir 0.9s var(--ease-out) 0.3s backwards;
 }
 
 .bajada b {
@@ -115,7 +98,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    animation: subir 0.9s var(--ease-out) 0.38s backwards;
 }
 
 .primario,
@@ -170,7 +152,6 @@
     padding: 20px 0 0;
     list-style: none;
     border-top: 1px solid #d9d9d1;
-    animation: subir 0.9s var(--ease-out) 0.46s backwards;
 }
 
 .datos li {
@@ -201,7 +182,6 @@
 .visual {
     position: relative;
     padding: 30px 26px 50px;
-    animation: subir 1.1s var(--ease-out) 0.2s backwards;
 }
 
 /* Círculo punteado que gira detrás de la tarjeta */
@@ -287,7 +267,8 @@
     aspect-ratio: 0.72;
     padding: 12px;
     color: #fff;
-    background: linear-gradient(160deg, #9b6bff, var(--violet-dark));
+    background: linear-gradient(160deg, hsl(var(--h) 100% 71%), hsl(var(--h) 69% 42%));
+    transition: background 0.6s;
     border-radius: 3px;
     rotate: -3deg;
     box-shadow: 0 14px 24px -12px rgba(0, 0, 0, 0.45);
@@ -480,8 +461,137 @@
     .orbita,
     .check,
     .precio,
-    .trabajos {
+    .trabajos,
+    .activa .chip,
+    .activa .titulo>span,
+    .activa .bajada,
+    .activa .botones,
+    .activa .datos,
+    .activa .visual {
         animation: none;
+    }
+}
+
+/* ───── Carrusel ───── */
+.pista {
+    display: flex;
+    transition: translate 0.8s var(--ease-out);
+}
+
+.diapositiva {
+    flex: 0 0 100%;
+    min-width: 0;
+}
+
+/* Las entradas se repiten cada vez que una diapositiva pasa a ser la actual */
+.activa .chip {
+    animation: subir 0.8s var(--ease-out) backwards;
+}
+
+.activa .titulo>span {
+    animation: subir 0.9s var(--ease-out) backwards;
+}
+
+.activa .titulo>span:nth-child(2) {
+    animation-delay: 0.08s;
+}
+
+.activa .titulo>span:nth-child(3) {
+    animation-delay: 0.16s;
+}
+
+.activa .titulo>span:nth-child(4) {
+    animation-delay: 0.24s;
+}
+
+.activa .bajada {
+    animation: subir 0.9s var(--ease-out) 0.3s backwards;
+}
+
+.activa .botones {
+    animation: subir 0.9s var(--ease-out) 0.38s backwards;
+}
+
+.activa .datos {
+    animation: subir 0.9s var(--ease-out) 0.46s backwards;
+}
+
+.activa .visual {
+    animation: subir 1.1s var(--ease-out) 0.2s backwards;
+}
+
+.flecha {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0 0 4px;
+    color: var(--tinta);
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid #deded6;
+    border-radius: 50%;
+    box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.4);
+    translate: 0 -50%;
+    transition: background 0.3s, color 0.3s, scale 0.3s var(--ease-out);
+}
+
+.flecha:hover {
+    color: #fff;
+    background: var(--tinta);
+    scale: 1.08;
+}
+
+.izquierda {
+    left: 16px;
+}
+
+.derecha {
+    right: 16px;
+}
+
+.puntos {
+    position: absolute;
+    left: 50%;
+    bottom: 26px;
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+    translate: -50% 0;
+}
+
+.puntos button {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.2);
+    border: 0;
+    border-radius: 999px;
+    transition: width 0.4s var(--ease-out), background 0.3s;
+}
+
+.puntos .puntoActivo {
+    width: 30px;
+    background: var(--violet);
+}
+
+/* Deja espacio a los lados para que las flechas no tapen el texto */
+@media (max-width: 1320px) and (min-width: 641px) {
+    .contenedor {
+        padding: 0 76px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pista {
+        transition: none;
     }
 }
 
@@ -527,6 +637,10 @@
         max-width: none;
         margin: 0;
         padding: 0;
+        animation: none;
+    }
+
+    .activa .visual {
         animation: none;
     }
 
@@ -649,5 +763,40 @@
     .precioMovil span {
         color: rgba(255, 255, 255, 0.65);
         font-size: 12px;
+    }
+
+    /* Flechas sobre la imagen y puntos arriba a la derecha */
+    .flecha {
+        top: 50vw;
+        width: 40px;
+        height: 40px;
+        font-size: 26px;
+        color: #fff;
+        background: rgba(11, 10, 16, 0.5);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .izquierda {
+        left: 10px;
+    }
+
+    .derecha {
+        right: 10px;
+    }
+
+    .puntos {
+        left: auto;
+        right: 16px;
+        top: 16px;
+        bottom: auto;
+        translate: none;
+    }
+
+    .puntos button {
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    .puntos .puntoActivo {
+        background: #fff;
     }
 }

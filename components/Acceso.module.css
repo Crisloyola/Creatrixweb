@@ -71,36 +71,8 @@
     background: var(--violet-claro);
 }
 
-/* Pestañas: Iniciar sesión | Suscribirse */
-.pestanas {
-    display: inline-flex;
-    gap: 4px;
-    padding: 4px;
-    background: #f3f3ee;
-    border-radius: 12px;
-}
-
-.pestanas button {
-    padding: 9px 14px;
-    color: var(--ink-mut);
-    font: inherit;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    background: none;
-    border: 0;
-    border-radius: 9px;
-    transition: background 0.2s, color 0.2s;
-}
-
-.pestanas button[aria-selected="true"] {
-    color: var(--ink);
-    background: #fff;
-    box-shadow: 0 2px 8px -3px rgba(0, 0, 0, 0.2);
-}
-
 .titulo {
-    margin: 18px 0 6px;
+    margin: 4px 0 6px;
     font-family: var(--font-bebas), sans-serif;
     font-size: 42px;
     font-weight: 400;
@@ -203,23 +175,4 @@
     line-height: 1.5;
     background: var(--violet-claro);
     border-radius: 12px;
-}
-
-.cambiar {
-    margin: 16px 0 0;
-    color: var(--ink-mut);
-    font-size: 13px;
-    text-align: center;
-}
-
-.cambiar button {
-    padding: 0;
-    color: var(--violet-dark);
-    font: inherit;
-    font-weight: 700;
-    cursor: pointer;
-    background: none;
-    border: 0;
-    text-decoration: underline;
-    text-underline-offset: 3px;
 }

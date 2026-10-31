@@ -57,7 +57,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
-        {/* Ventana de Iniciar sesión / Suscribirse, disponible en todas las páginas */}
+        {/* Ventana de suscripción, disponible en todas las páginas */}
         <Acceso />
         <Animaciones />
       </body>

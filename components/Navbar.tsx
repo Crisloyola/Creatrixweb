@@ -25,6 +25,7 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", onScroll); // limpieza
     }, []);
 
+
     // Cierra el menú con la tecla Escape
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => {
@@ -54,6 +55,8 @@ export default function Navbar() {
     const clases = [
         styles.nav,
         scrolled ? styles.scrolled : "",
+    
+    
         abierto ? styles.open : "",
     ].join(" ");
 
@@ -79,18 +82,10 @@ export default function Navbar() {
                             {item.texto}
                         </a>
                     ))}
-
-                    {/* En celular el acceso también va dentro del menú */}
-                    <a className={styles.soloMovil} href="#login" onClick={() => setAbierto(false)}>
-                        Iniciar sesión
-                    </a>
                 </nav>
 
                 <div className={styles.acciones}>
-                    <a className={styles.login} href="#login">
-                        Iniciar sesión
-                    </a>
-                    <a className={`${styles.cta} brillo`} href="#registro" data-iman>
+                    <a className={`${styles.cta} brillo`} href="#suscribirse" data-iman>
                         Suscribirse
                     </a>
 

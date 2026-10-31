@@ -39,7 +39,7 @@ export default function Beneficios() {
                     ))}
                 </ol>
 
-                <a className={`${styles.botonClub} brillo`} href="#registro" data-iman>
+                <a className={`${styles.botonClub} brillo`} href="#suscribirse" data-iman>
                     Quiero unirme al club →
                 </a>
             </div>
