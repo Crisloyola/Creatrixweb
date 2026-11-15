@@ -21,6 +21,7 @@ function aItem(id: string): ItemDetalle | null {
         descripcion: p.descripcion,
         precio: p.precio,
         imagen: p.imagen,
+        caracteristicas: p.caracteristicas,
         tono: tono(i),
     };
 }
@@ -75,7 +76,7 @@ export default function Productos() {
                                 />
                                 <span className={styles.cuerpo}>
                                     <strong>{p.nombre}</strong>
-                                    <span className={styles.precio}>{p.precio}</span>
+                                    <span className={styles.precio}>{p.precio ?? "Cotiza por WhatsApp"}</span>
                                 </span>
                             </button>
                         ))}

@@ -2,9 +2,10 @@ export interface Producto {
     id: string;
     nombre: string;
     emoji: string;
-    precio: string;
+    precio?: string; // sin precio se muestra "Cotiza por WhatsApp"
     descripcion: string;
-    imagen?: string; // ruta de la foto, por ejemplo "/productos/stickers.jpg"
+    imagen?: string; // ruta de la foto, por ejemplo "/img/productos/stickers.webp"
+    caracteristicas?: string[]; // viñetas que se ven en la ventana de detalle
 }
 
 export interface GranFormato {
@@ -16,6 +17,7 @@ export interface GranFormato {
     detalle: string;
     cta: string;
     imagen?: string;
+    caracteristicas?: string[];
 }
 
 //lleva el boton del banner a una seccion establecida

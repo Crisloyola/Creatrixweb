@@ -16,6 +16,8 @@ const ultra: ItemDetalle = {
     etiqueta: "Gran formato",
     nombre: destacado.titulo,
     descripcion: destacado.texto,
+    imagen: destacado.imagen,
+    caracteristicas: destacado.caracteristicas,
     tono: 270,
 };
 
@@ -30,6 +32,7 @@ export default function GranFormato() {
             nombre: g.nombre,
             descripcion: `${g.descripcion} ${g.detalle}`,
             imagen: g.imagen,
+            caracteristicas: g.caracteristicas,
             tono: tono(i),
         });
     }

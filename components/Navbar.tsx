@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { site } from "@/data/site";
 import styles from "./Navbar.module.css";
 
@@ -64,10 +65,13 @@ export default function Navbar() {
         <header className={clases}>
             <div className={styles.bar}>
                 <a className={styles.logo} href="#hero" onClick={() => setAbierto(false)}>
-                    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M3 2l19 10L3 22l5.5-10z" fill="#7c3aed" />
-                    </svg>
-                    <span>{site.nombre}</span>
+                    <Image
+                        src="/img/logo-creatrix.webp"
+                        alt={site.nombre}
+                        width={497}
+                        height={120}
+                        loading="eager"
+                    />
                 </a>
 
                 <nav id="menu-principal" className={styles.links}>

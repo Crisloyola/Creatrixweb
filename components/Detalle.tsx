@@ -13,6 +13,7 @@ export interface ItemDetalle {
     descripcion: string;
     precio?: string;
     imagen?: string;
+    caracteristicas?: string[];
     tono: number;
 }
 
@@ -78,7 +79,7 @@ export default function Detalle({ item, onCerrar }: Props) {
                         <p>{mostrado.descripcion}</p>
 
                         <ul className={styles.ventajas}>
-                            {VENTAJAS.map((v) => (
+                            {(mostrado.caracteristicas ?? VENTAJAS).map((v) => (
                                 <li key={v}>{v}</li>
                             ))}
                         </ul>
