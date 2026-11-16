@@ -209,137 +209,18 @@
     border: 6px solid #fff;
     border-radius: 22px;
     rotate: 2deg;
-    background:
-        radial-gradient(circle at 70% 20%, #ffffff, transparent 60%),
-        linear-gradient(180deg, #ececec 0 64%, #dcdcd6 64%);
+    background: #ececec;
     box-shadow: 0 40px 70px -30px rgba(0, 0, 0, 0.45);
 }
 
-/* Roll screen: banner alto sobre su base */
-.rollScreen {
-    position: absolute;
-    left: 9%;
-    bottom: 16%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    width: 27%;
-    height: 72%;
-    padding: 12px;
-    color: #fff;
-    background: linear-gradient(170deg, #2a2a27, #0f0f0e);
-    border-radius: 4px 4px 0 0;
-    box-shadow: 6px 10px 20px -8px rgba(0, 0, 0, 0.5);
+/* Foto real del trabajo, recortada para llenar la tarjeta */
+.foto {
+    object-fit: cover;
+    transition: scale 6s ease-out;
 }
 
-.rollScreen::after {
-    content: "";
-    position: absolute;
-    left: -8%;
-    right: -8%;
-    bottom: -9px;
-    height: 9px;
-    background: #b9b9b2;
-    border-radius: 3px;
-}
-
-.rollScreen span {
-    font-family: var(--font-bebas), sans-serif;
-    font-size: clamp(20px, 2.6vw, 30px);
-    line-height: 0.9;
-}
-
-.rollScreen small {
-    color: var(--claro);
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-}
-
-/* Afiche colgado en la pared */
-.afiche {
-    position: absolute;
-    top: 10%;
-    left: 42%;
-    display: flex;
-    flex-direction: column;
-    width: 34%;
-    aspect-ratio: 0.72;
-    padding: 12px;
-    color: #fff;
-    background: linear-gradient(160deg, hsl(var(--h) 100% 71%), hsl(var(--h) 69% 42%));
-    transition: background 0.6s;
-    border-radius: 3px;
-    rotate: -3deg;
-    box-shadow: 0 14px 24px -12px rgba(0, 0, 0, 0.45);
-}
-
-.afiche b {
-    font-family: var(--font-bebas), sans-serif;
-    font-size: clamp(22px, 3vw, 36px);
-    font-weight: 400;
-    line-height: 0.88;
-    text-transform: uppercase;
-}
-
-.afiche small {
-    margin-top: auto;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-}
-
-.sticker {
-    position: absolute;
-    top: 14%;
-    right: 7%;
-    display: grid;
-    place-items: center;
-    width: 17%;
-    aspect-ratio: 1;
-    color: #fff;
-    font-size: clamp(18px, 2.4vw, 28px);
-    background: #0f0f0e;
-    border: 4px solid #fff;
-    border-radius: 50%;
-    rotate: 12deg;
-    box-shadow: 0 10px 18px -8px rgba(0, 0, 0, 0.5);
-}
-
-/* Pila de volantes sobre la mesa */
-.volante {
-    position: absolute;
-    right: 9%;
-    bottom: 10%;
-    width: 36%;
-    aspect-ratio: 1.45;
-}
-
-.volante i {
-    position: absolute;
-    inset: 0;
-    background: #fff;
-    border-radius: 3px;
-    box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.35);
-}
-
-.volante i:nth-child(1) {
-    rotate: -8deg;
-}
-
-.volante i:nth-child(2) {
-    rotate: 4deg;
-}
-
-.volante i:nth-child(3) {
-    background:
-        linear-gradient(#0f0f0e, #0f0f0e) 12% 22% / 50% 10% no-repeat,
-        linear-gradient(#c9c9c2, #c9c9c2) 12% 46% / 70% 6% no-repeat,
-        linear-gradient(#c9c9c2, #c9c9c2) 12% 60% / 58% 6% no-repeat,
-        linear-gradient(var(--tinta), var(--tinta)) 12% 84% / 30% 12% no-repeat,
-        #fff;
-    rotate: -1deg;
+.activa .foto {
+    scale: 1.04;
 }
 
 /* Etiquetas flotantes alrededor de la tarjeta */
@@ -438,7 +319,8 @@
 .trabajos i {
     width: 34px;
     height: 34px;
-    background: linear-gradient(135deg, var(--tinta), var(--violet));
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--tinta), var(--violet)) center / cover;
     border-radius: 8px;
 }
 

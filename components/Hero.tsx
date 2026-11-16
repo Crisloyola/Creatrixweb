@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import styles from "./Hero.module.css";
@@ -9,6 +10,13 @@ export interface LineaTitulo {
     texto: string;
     contorno?: boolean;
     marca?: string;
+}
+
+interface Precio {
+    etiqueta: string;
+    monto: string;
+    nota: string;
+    extra?: string; // línea pequeña al pie de la tarjeta flotante
 }
 
 interface Boton {
@@ -24,41 +32,18 @@ export interface Diapositiva {
     bajada: React.ReactNode;
     primario: Boton;
     secundario: Boton;
-    afiche: [string, string]; // las 2 palabras del afiche de la maqueta
-    tono: number; // tono de color (0-360) del afiche
+    imagen: { src: string; alt: string }; // foto real del trabajo (en /public/img/hero)
+    trabajo: { titulo: string; texto: string }; // texto de la etiqueta sobre la foto
+    precio?: Precio; // si no se pone, usa el general
+    tono: number; // tono de color (0-360) de la diapositiva
 }
 
 interface Props {
     diapositivas: Diapositiva[];
     datos: { valor: string; sufijo?: string; texto: string }[];
-    precio: { etiqueta: string; monto: string; nota: string };
+    precio: Precio;
     check: string;
     intervalo?: number; // milisegundos entre cada pase automático
-}
-
-// Escena de la portada: roll screen, afiche, sticker y volantes
-function EscenaImprenta({ afiche }: { afiche: [string, string] }) {
-    return (
-        <>
-            <div className={styles.rollScreen}>
-                <span>Tu marca</span>
-                <small>aquí</small>
-            </div>
-            <div className={styles.afiche}>
-                <b>{afiche[0]}</b>
-                <b>{afiche[1]}</b>
-                <small>2400 dpi</small>
-            </div>
-            <div className={styles.sticker}>
-                <span>★</span>
-            </div>
-            <div className={styles.volante}>
-                <i />
-                <i />
-                <i />
-            </div>
-        </>
-    );
 }
 
 export default function Hero({ diapositivas, datos, precio, check, intervalo = 6000 }: Props) {
@@ -108,6 +93,7 @@ export default function Hero({ diapositivas, datos, precio, check, intervalo = 6
                     const activa = n === actual;
                     // La primera diapositiva lleva el h1; las demás, h2
                     const Titulo = n === 0 ? "h1" : "h2";
+                    const p = d.precio ?? precio;
                     return (
                         <div
                             key={d.id}
@@ -164,18 +150,25 @@ export default function Hero({ diapositivas, datos, precio, check, intervalo = 6
 
                                     {/* En celular el precio va en una barra al final, en vez de flotar */}
                                     <div className={styles.precioMovil}>
-                                        <small>{precio.etiqueta}</small>
-                                        <b>{precio.monto}</b>
-                                        <span>{precio.nota}</span>
+                                        <small>{p.etiqueta}</small>
+                                        <b>{p.monto}</b>
+                                        <span>{p.nota}</span>
                                     </div>
                                 </div>
 
                                 <div className={styles.visual} aria-hidden="true">
                                     <i className={styles.orbita} />
 
-                                    {/* Maqueta hecha con CSS; se puede cambiar por una foto real */}
                                     <div className={styles.escena}>
-                                        <EscenaImprenta afiche={d.afiche} />
+                                        <Image
+                                            src={d.imagen.src}
+                                            alt={d.imagen.alt}
+                                            fill
+                                            sizes="(max-width: 900px) 100vw, 45vw"
+                                            className={styles.foto}
+                                            loading={n === 0 ? "eager" : "lazy"}
+                                            fetchPriority={n === 0 ? "high" : "auto"}
+                                        />
                                     </div>
 
                                     <div className={styles.check}>
@@ -183,17 +176,17 @@ export default function Hero({ diapositivas, datos, precio, check, intervalo = 6
                                     </div>
 
                                     <div className={styles.precio}>
-                                        <small>{precio.etiqueta}</small>
-                                        <b>{precio.monto}</b>
-                                        <span>{precio.nota}</span>
-                                        <em>Mejor precio por volumen</em>
+                                        <small>{p.etiqueta}</small>
+                                        <b>{p.monto}</b>
+                                        <span>{p.nota}</span>
+                                        {p.extra && <em>{p.extra}</em>}
                                     </div>
 
                                     <div className={styles.trabajos}>
-                                        <i />
+                                        <i style={{ backgroundImage: `url("${d.imagen.src}")` }} />
                                         <div>
-                                            <b>Trabajos reales</b>
-                                            <span>Pedidos impresos para empresas</span>
+                                            <b>{d.trabajo.titulo}</b>
+                                            <span>{d.trabajo.texto}</span>
                                         </div>
                                     </div>
                                 </div>

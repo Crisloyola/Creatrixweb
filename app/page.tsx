@@ -30,7 +30,11 @@ export default function Home() {
             ),
             primario: { texto: "Ver planes", href: "#planes" },
             secundario: { texto: "Ver productos", href: "#productos" },
-            afiche: ["Gran", "formato"],
+            imagen: {
+              src: "/img/hero/banners-publicitarios.png",
+              alt: "Roll screens, banners y lonas publicitarias impresas para distintas marcas",
+            },
+            trabajo: { titulo: "Banners y roll screens", texto: "Displays listos para tu punto de venta" },
             tono: 262,
           },
           {
@@ -49,7 +53,12 @@ export default function Home() {
             ),
             primario: { texto: "Ver gran formato", href: "#gran-formato" },
             secundario: { texto: "Cotizar", href: "#contacto" },
-            afiche: ["Frontis", "y murales"],
+            imagen: {
+              src: "/img/hero/gigantografias.webp",
+              alt: "Impresora de gran formato imprimiendo gigantografías y afiches full color",
+            },
+            trabajo: { titulo: "Gigantografías", texto: "Impresión ecosolvente en 2400 dpi" },
+            precio: { etiqueta: "Producción", monto: "1-4 días", nota: "según tamaño y cantidad", extra: "Tintas ecosolventes" },
             tono: 165,
           },
           {
@@ -67,7 +76,11 @@ export default function Home() {
             ),
             primario: { texto: "Ver productos", href: "#productos" },
             secundario: { texto: "Ver promociones", href: "#promociones" },
-            afiche: ["Stickers", "a medida"],
+            imagen: {
+              src: "/img/hero/stickers.png",
+              alt: "Stickers circulares impresos en vinil blanco, transparente y negro",
+            },
+            trabajo: { titulo: "Stickers troquelados", texto: "Vinil blanco, transparente y más" },
             tono: 330,
           },
           {
@@ -85,7 +98,12 @@ export default function Home() {
             ),
             primario: { texto: "Cotizar ahora", href: "#contacto" },
             secundario: { texto: "Ver planes", href: "#planes" },
-            afiche: ["Envíos", "nacionales"],
+            imagen: {
+              src: "/img/hero/volantes.jpg",
+              alt: "Volantes publicitarios impresos a full color",
+            },
+            trabajo: { titulo: "Volantes y papelería", texto: "Enviados a Lima y provincias" },
+            precio: { etiqueta: "Despacho", monto: "Todo el Perú", nota: "por agencia a provincias", extra: "Recojo gratis en Lima Cercado" },
             tono: 28,
           },
         ]}
@@ -95,7 +113,7 @@ export default function Home() {
           { valor: "1-4", sufijo: "días", texto: "Producción" },
           { valor: "Perú", texto: "Envíos a todo el país" },
         ]}
-        precio={{ etiqueta: "Stickers desde", monto: "S/ 49.99", nota: "el pliego + IGV" }}
+        precio={{ etiqueta: "Stickers desde", monto: "S/ 49.99", nota: "el pliego + IGV", extra: "Mejor precio por volumen" }}
         check="Envíos a todo el Perú"
       />
       <Marquee />
